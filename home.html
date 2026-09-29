@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bengkel Motor Jaya</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+    color:#333;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#111;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
+}
+
+.navbar nav a{
+    color:#fff;
+    margin-left:1rem;
+    text-decoration:none;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active{
+    color:#ff9800;
+}
+
+/* HERO */
+.hero{
+    padding:4rem 2rem;
+    background:linear-gradient(120deg,#111,#333);
+    color:#fff;
+}
+
+.hero-content{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2rem;
+    align-items:center;
+}
+
+.hero h2{
+    font-size:2.5rem;
+    margin-bottom:1rem;
+}
+
+/* FEATURE */
+.hero-features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+    margin:1.8rem 0;
+}
+
+.feature{
+    background:rgba(255,255,255,0.08);
+    padding:1rem;
+    border-radius:12px;
+}
+
+.feature strong{
+    display:block;
+}
+
+.feature small{
+    font-size:.8rem;
+    color:#ddd;
+}
+
+/* BUTTON */
+.btn{
+    display:inline-block;
+    padding:12px 22px;
+    background:#ff9800;
+    color:#000;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-right:10px;
+}
+
+/* MEKANIK */
+.mekanik-section{
+    padding:4rem 2rem;
+    background:#fff;
+}
+
+.mekanik-section h2{
+    text-align:center;
+    margin-bottom:2rem;
+}
+
+.mekanik-grid{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:2rem;
+}
+
+.mekanik-card{
+    background:#f9f9f9;
+    padding:2rem;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    text-align:center;
+}
+
+.mekanik-card img{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:1rem;
+}
+
+.mekanik-card h3{
+    margin-bottom:.3rem;
+}
+
+.mekanik-card small{
+    color:#777;
+    display:block;
+    margin-bottom:.8rem;
+}
+
+.mekanik-card ul{
+    text-align:left;
+    font-size:.85rem;
+    margin-bottom:1rem;
+}
+
+.mekanik-card ul li{
+    margin-bottom:.4rem;
+}
+
+.choose-btn{
+    display:block;
+    padding:.6rem;
+    background:#111;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.choose-btn:hover{
+    background:#ff9800;
+    color:#000;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .hero-content{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1>Bengkel Motor Jaya</h1>
+    <nav>
+        <a href="home.html" class="active">Home</a>
+        <a href="layanan.html">Layanan</a>
+        <a href="harga.html">Harga</a>
+        <a href="booking.html">Booking</a>
+        <a href="kontak.html">Kontak</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <div>
+            <h2>Bengkel Motor Profesional & Terpercaya</h2>
+            <p>Spesialis Matic, Bebek & Sport<br>
+            Mekanik ahli dengan pengalaman nyata</p>
+
+            <div class="hero-features">
+                <div class="feature">
+                    <strong>🛠️ Mekanik Ahli</strong>
+                    <small>Pilih mekanik sesuai kebutuhan</small>
+                </div>
+                <div class="feature">
+                    <strong>📋 Estimasi Jelas</strong>
+                    <small>Harga & waktu transparan</small>
+                </div>
+                <div class="feature">
+                    <strong>💬 Konsultasi Gratis</strong>
+                    <small>Bisa tanya tanpa biaya</small>
+                </div>
+                <div class="feature">
+                    <strong>⚡ Servis Cepat</strong>
+                    <small>Rata-rata 30–45 menit</small>
+                </div>
+            </div>
+
+            <a href="#mekanik" class="btn">Pilih Mekanik</a>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1597008641621-4f8b41df6f9c"
+             style="width:100%;border-radius:20px;">
+    </div>
+</section>
+
+<section class="mekanik-section" id="mekanik">
+    <h2>👨‍🔧 Pilih Mekanik Anda</h2>
+
+    <div class="mekanik-grid">
+        <div class="mekanik-card">
+            <img src="">
+            <h3>Andi Pratama</h3>
+            <small>Mekanik Senior (8 Tahun)</small>
+            <ul>
+                <li>✔ Spesialis Motor Matic</li>
+                <li>✔ CVT & Injeksi</li>
+                <li>✔ Servis cepat & rapi</li>
+            </ul>
+            <a href="booking.html?mekanik=andi" class="choose-btn">Pilih Andi</a>
+        </div>
+
+        <div class="mekanik-card">
+            <img src="">
+            <h3>Budi Santoso</h3>
+            <small>Spesialis Mesin (10 Tahun)</small>
+            <ul>
+                <li>✔ Servis besar</li>
+                <li>✔ Overhaul mesin</li>
+                <li>✔ Diagnosa akurat</li>
+            </ul>
+            <a href="booking.html?mekanik=budi" class="choose-btn">Pilih Budi</a>
+        </div>
+
+        <div class="mekanik-card">
+            <img src="">
+            <h3>Rizky Maulana</h3>
+            <small>Teknisi Sport & Racing</small>
+            <ul>
+                <li>✔ Motor sport</li>
+                <li>✔ Tune up performa</li>
+                <li>✔ Setting ECU</li>
+            </ul>
+            <a href="booking.html?mekanik=rizky" class="choose-btn">Pilih Rizky</a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+ 

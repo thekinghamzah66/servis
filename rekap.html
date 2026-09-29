@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Rekap Servis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{font-family:'Segoe UI',sans-serif;background:#f4f4f4}
+.box{
+    max-width:1100px;margin:3rem auto;background:#fff;
+    padding:2rem;border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1)
+}
+h2{text-align:center;margin-bottom:1.5rem}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd;text-align:center}
+th{background:#111;color:#fff}
+.lunas{color:green;font-weight:bold}
+.belum{color:red;font-weight:bold}
+button{
+    padding:6px 12px;border:none;
+    border-radius:6px;cursor:pointer
+}
+.lunas-btn{background:#4CAF50;color:#fff}
+.hapus-btn{background:#f44336;color:#fff}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>📊 Rekap Servis Bengkel</h2>
+
+<table>
+<thead>
+<tr>
+    <th>No</th>
+    <th>Nama</th>
+    <th>Motor</th>
+    <th>Servis</th>
+    <th>Tanggal</th>
+    <th>Total</th>
+    <th>Status</th>
+    <th>Aksi</th>
+</tr>
+</thead>
+<tbody id="data"></tbody>
+</table>
+</div>
+
+<script>
+let rekap = JSON.parse(localStorage.getItem("rekapServis")) || [];
+const tbody = document.getElementById("data");
+
+function render(){
+    tbody.innerHTML = "";
+    rekap.forEach((r,i)=>{
+        tbody.innerHTML += `
+        <tr>
+            <td>${i+1}</td>
+            <td>${r.nama}</td>
+            <td>${r.motor}</td>
+            <td>${r.servis}</td>
+            <td>${r.tanggal}</td>
+            <td>Rp ${Number(r.harga).toLocaleString()}</td>
+            <td class="${r.status === 'Lunas' ? 'lunas':'belum'}">
+                ${r.status}
+            </td>
+            <td>
+                <button class="lunas-btn" onclick="lunas(${i})">Lunas</button>
+                <button class="hapus-btn" onclick="hapus(${i})">Hapus</button>
+            </td>
+        </tr>`;
+    });
+}
+
+function lunas(i){
+    rekap[i].status = "Lunas";
+    localStorage.setItem("rekapServis", JSON.stringify(rekap));
+    render();
+}
+
+function hapus(i){
+    rekap.splice(i,1);
+    localStorage.setItem("rekapServis", JSON.stringify(rekap));
+    render();
+}
+
+render();
+</script>
+
+</body>
+</html>

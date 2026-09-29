@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Servis</title>
+
+<style>
+/* ===== RESET ===== */
+*{
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* ===== A4 SETTING ===== */
+@page{
+    size:A4;
+    margin:20mm;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+/* ===== INVOICE BOX ===== */
+.invoice{
+    width:210mm;
+    min-height:297mm;
+    margin:auto;
+    background:#fff;
+    padding:20mm;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+/* ===== HEADER ===== */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:2px solid #000;
+    padding-bottom:10px;
+    margin-bottom:20px;
+}
+
+.header img{
+    height:60px;
+}
+
+.header h2{
+    margin:0;
+}
+
+/* ===== INFO ===== */
+.info{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.info div{
+    line-height:1.6;
+}
+
+/* ===== TABLE ===== */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #000;
+    padding:10px;
+    text-align:left;
+}
+
+th{
+    background:#eee;
+}
+
+/* ===== TOTAL ===== */
+.total{
+    text-align:right;
+    font-size:1.3rem;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+/* ===== QRIS ===== */
+.qris{
+    margin-top:30px;
+    text-align:center;
+}
+
+.qris img{
+    width:160px;
+    margin-top:10px;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+    margin-top:25px;
+    padding:12px;
+    background:#111;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    width:100%;
+    font-weight:bold;
+}
+
+/* ===== PRINT MODE ===== */
+@media print{
+    body{background:#fff}
+    .btn{display:none}
+    .invoice{box-shadow:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="invoice" id="invoice">
+
+<!-- HEADER -->
+<div class="header">
+    <img src="logo.png" alt="Logo Bengkel">
+    <div>
+        <h2>INVOICE SERVIS</h2>
+        <strong>No:</strong> <span id="invoiceNo"></span><br>
+        <strong>Tanggal Cetak:</strong> <span id="tglCetak"></span>
+    </div>
+</div>
+
+<!-- INFO -->
+<div class="info">
+    <div>
+        <strong>Nama:</strong> <span id="nama"></span><br>
+        <strong>WhatsApp:</strong> <span id="wa"></span><br>
+        <strong>Motor:</strong> <span id="motor"></span>
+    </div>
+
+    <div>
+        <strong>Jenis Servis:</strong><br>
+        <span id="servis"></span><br>
+        <strong>Tanggal Servis:</strong><br>
+        <span id="tanggal"></span>
+    </div>
+</div>
+
+<!-- TABLE -->
+<table>
+<tr>
+    <th>Deskripsi</th>
+    <th>Harga</th>
+</tr>
+<tr>
+    <td id="servis2"></td>
+    <td id="harga"></td>
+</tr>
+</table>
+
+<div class="total">
+    Total Bayar: <span id="total"></span>
+</div>
+
+<!-- QRIS -->
+<div class="qris">
+    <h3>📲 Pembayaran QRIS</h3>
+    <p>Scan QR di bawah ini</p>
+    <img src="Qris.jfif" alt="QRIS">
+</div>
+
+<button class="btn" onclick="window.print()">⬇️ Download / Print PDF</button>
+
+</div>
+
+<script>
+// ================= DATA =================
+const nama = localStorage.getItem("nama");
+const wa = localStorage.getItem("wa");
+const motor = localStorage.getItem("motor");
+const servis = localStorage.getItem("servis");
+const harga = localStorage.getItem("harga");
+const tanggal = localStorage.getItem("tanggal");
+
+// ================= INVOICE NO =================
+const invoiceNo = "INV-" + Date.now();
+
+// ================= DATE =================
+const today = new Date().toLocaleDateString("id-ID",{
+    day:"2-digit",month:"long",year:"numeric"
+});
+
+// ================= RENDER =================
+document.getElementById("invoiceNo").innerText = invoiceNo;
+document.getElementById("tglCetak").innerText = today;
+document.getElementById("nama").innerText = nama;
+document.getElementById("wa").innerText = wa;
+document.getElementById("motor").innerText = motor;
+document.getElementById("servis").innerText = servis;
+document.getElementById("servis2").innerText = servis;
+document.getElementById("tanggal").innerText = tanggal;
+document.getElementById("harga").innerText =
+document.getElementById("total").innerText =
+    "Rp " + Number(harga).toLocaleString();
+
+// ================= SIMPAN KE REKAP =================
+let rekap = JSON.parse(localStorage.getItem("rekapServis")) || [];
+rekap.push({
+    invoice:invoiceNo,
+    nama, motor, servis, harga, tanggal,
+    status:"Belum Lunas"
+});
+localStorage.setItem("rekapServis", JSON.stringify(rekap));
+</script>
+
+</body>
+</html>

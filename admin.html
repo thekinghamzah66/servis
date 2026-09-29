@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Login Admin</title>
+<style>
+body{
+    font-family:Segoe UI,sans-serif;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.box{
+    background:#fff;
+    padding:2rem;
+    width:300px;
+    border-radius:10px;
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+input,button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+}
+button{
+    background:#111;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h3>🔐 Login Admin</h3>
+    <input id="user" placeholder="Username">
+    <input id="pass" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
+
+
+<script>
+function login(){
+    const u = document.getElementById("user").value;
+    const p = document.getElementById("pass").value;
+
+    if(u==="admin" && p==="12345"){
+        localStorage.setItem("adminLogin","true");
+        location.href="dashboard.html";
+    }else{
+        alert("Username / Password salah!");
+    }
+}
+</script>
+
+</body>
+</html>

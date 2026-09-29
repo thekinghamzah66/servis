@@ -1,0 +1,409 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f5f6fa;
+    color:#333;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#0f172a;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.navbar h1{
+    color:#f97316;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:1.5rem;
+    font-weight:500;
+}
+
+.navbar a.active,
+.navbar a:hover{
+    color:#f97316;
+}
+
+/* HERO */
+.hero{
+    background:linear-gradient(135deg,#020617,#1e293b);
+    color:white;
+    padding:5rem 2rem;
+}
+
+.hero-content{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:2rem;
+    align-items:center;
+}
+
+.hero h2{
+    font-size:2.8rem;
+    margin-bottom:1rem;
+}
+
+.hero p{
+    opacity:.9;
+    margin-bottom:2rem;
+}
+
+.hero-features{
+    display:flex;
+    gap:1.5rem;
+    flex-wrap:wrap;
+}
+
+.hero-features div{
+    background:#020617;
+    padding:1rem 1.5rem;
+    border-radius:12px;
+    font-size:.9rem;
+}
+
+/* BUTTON */
+.btn{
+    background:#f97316;
+    color:white;
+    padding:.9rem 2.2rem;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.btn-outline{
+    background:transparent;
+    border:2px solid #f97316;
+    color:#f97316;
+}
+
+/* SECTION */
+section{
+    padding:4rem 2rem;
+    max-width:1100px;
+    margin:auto;
+}
+
+section h2{
+    text-align:center;
+    margin-bottom:2.5rem;
+    color:#0f172a;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1.8rem;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:2rem;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h3{
+    margin-bottom:.5rem;
+    color:#0f172a;
+}
+
+.card span{
+    font-size:.85rem;
+    color:#64748b;
+}
+
+/* PRICE */
+.price{
+    margin-top:.7rem;
+    font-size:1.3rem;
+    font-weight:bold;
+    color:#f97316;
+}
+
+/* FORM */
+form{
+    max-width:550px;
+    margin:auto;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:.9rem;
+    border-radius:10px;
+    border:1px solid #cbd5e1;
+    margin-bottom:1rem;
+}
+
+/* FOOTER */
+footer{
+    background:#020617;
+    color:white;
+    text-align:center;
+    padding:1.2rem;
+}
+/* PROMO SERVIS */
+#promo h2{
+    color:#f97316;
+}
+
+.promo-card{
+    position:relative;
+    border:2px dashed #f97316;
+    background:#fff7ed;
+}
+
+.promo-badge{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:#f97316;
+    color:white;
+    padding:.3rem .8rem;
+    border-radius:20px;
+    font-size:.75rem;
+    font-weight:bold;
+}
+
+.promo-card del{
+    color:#94a3b8;
+    font-size:.9rem;
+}
+
+.promo-card .price{
+    margin:1rem 0;
+}
+/* =========================
+   COUNTDOWN PROMO
+========================= */
+
+.countdown{
+    text-align:center;
+    background:#111;
+    color:#fff;
+    padding:1.5rem 1rem;
+    border-radius:15px;
+    margin:2rem auto 3rem;
+    max-width:700px;
+}
+
+.countdown-title{
+    font-size:1rem;
+    margin-bottom:0.5rem;
+    color:#ff9800;
+    font-weight:bold;
+}
+
+.timer-text{
+    font-size:1.2rem;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.timer-text span{
+    color:#ff9800;
+    font-weight:bold;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+    .timer-text{
+        font-size:1rem;
+        line-height:1.6;
+    }
+}
+.pdf{
+    background:#111;
+    margin-top:1rem;
+}
+
+/* KHUSUS SAAT PRINT */
+@media print{
+    body{
+        background:#fff;
+    }
+    .btn{
+        display:none;
+    }
+    .qris{
+        border:1px solid #000;
+    }
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card{
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.service-img{
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card h3{
+  margin: 8px 0 4px;
+}
+
+.card span{
+  color: #666;
+  font-size: 14px;
+}
+.services{
+  padding: 40px 20px;
+}
+
+.services h2{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.card{
+  background: #fff;
+  border-radius: 14px;
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.service-img{
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.card h3{
+  margin: 6px 0;
+  font-size: 18px;
+}
+
+.card span{
+  font-size: 14px;
+  color: #666;
+}
+/* ===== BUTTON BOOKING ===== */
+.btn-booking{
+    display:inline-block;
+    margin-top:1.2rem;
+    padding:.6rem 1.2rem;
+    background:#e63946;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:.85rem;
+    transition:.3s;
+}
+
+.btn-booking:hover{
+    background:#ff9f1c;
+    transform:scale(1.05);
+}
+
+/* ===== FLOATING BUTTON ===== */
+.floating-booking{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#ff9f1c;
+    color:#111;
+    padding:.9rem 1.4rem;
+    border-radius:40px;
+    text-decoration:none;
+    font-weight:bold;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+    transition:.3s;
+    z-index:100;
+}
+
+.floating-booking:hover{
+    background:#e63946;
+    color:white;
+    transform:translateY(-5px);
+}
+
+.hero-features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+    margin:1.8rem 0;
+}
+
+.feature{
+    display:flex;
+    align-items:flex-start;
+    gap:.8rem;
+    background:rgba(255,255,255,0.08);
+    padding:0.9rem 1rem;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.feature:hover{
+    background:rgba(255,152,0,0.15);
+    transform:translateY(-3px);
+}
+
+.feature .icon{
+    font-size:1.4rem;
+}
+
+.feature strong{
+    display:block;
+    font-size:.95rem;
+}
+
+.feature small{
+    font-size:.8rem;
+    color:#ddd;
+    line-height:1.4;
+}

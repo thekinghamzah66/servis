@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Admin Bengkel</title>
+
+<style>
+:root{
+    --dark:#111;
+    --primary:#2563eb;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --bg:#f1f5f9;
+    --card:#ffffff;
+}
+
+*{
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+}
+
+/* HEADER */
+header{
+    background:var(--dark);
+    color:#fff;
+    padding:1rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logout{
+    background:var(--danger);
+    color:#fff;
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* CONTAINER */
+.container{
+    padding:2rem;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1.5rem;
+    margin-bottom:2rem;
+}
+
+.stat-card{
+    background:var(--card);
+    padding:1.5rem;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.stat-card h4{
+    margin:0;
+    color:#555;
+    font-weight:500;
+}
+
+.stat-card strong{
+    font-size:1.6rem;
+    display:block;
+    margin-top:.5rem;
+}
+
+/* CARD */
+.card{
+    background:var(--card);
+    padding:1.5rem;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#f8fafc;
+    text-align:left;
+    padding:12px;
+    font-size:.9rem;
+}
+
+td{
+    padding:12px;
+    border-top:1px solid #eee;
+    font-size:.9rem;
+}
+
+/* STATUS */
+.status{
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:.8rem;
+    font-weight:bold;
+}
+
+.belum{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.lunas{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.btn-lunas{
+    background:var(--success);
+    color:#fff;
+    border:none;
+    padding:6px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+    .container{padding:1rem}
+    th,td{font-size:.8rem}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <strong>📊 Dashboard Admin Bengkel</strong>
+    <button class="logout" onclick="logout()">Logout</button>
+</header>
+
+<div class="container">
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat-card">
+            <h4>Total Omzet</h4>
+            <strong id="omzet">Rp 0</strong>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card">
+        <h3>Rekap Servis</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Invoice</th>
+                    <th>Nama</th>
+                    <th>Servis</th>
+                    <th>Harga</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="data"></tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+// ===== PROTEK ADMIN =====
+if(localStorage.getItem("adminLogin")!=="true"){
+    location.href="admin.html";
+}
+
+// ===== LOAD DATA =====
+let rekap = JSON.parse(localStorage.getItem("rekapServis")) || [];
+let tbody = document.getElementById("data");
+let total = 0;
+
+if(rekap.length === 0){
+    tbody.innerHTML = `
+    <tr>
+        <td colspan="6" style="text-align:center">Belum ada data servis</td>
+    </tr>`;
+}
+
+rekap.forEach((d,i)=>{
+    if(d.status==="Lunas") total += Number(d.harga);
+
+    tbody.innerHTML += `
+    <tr>
+        <td>${d.invoice}</td>
+        <td>${d.nama}</td>
+        <td>${d.servis}</td>
+        <td>Rp ${Number(d.harga).toLocaleString()}</td>
+        <td>
+            <span class="status ${d.status==="Lunas"?"lunas":"belum"}">
+                ${d.status}
+            </span>
+        </td>
+        <td>
+            ${d.status==="Belum Lunas" ?
+            `<button class="btn-lunas" onclick="setLunas(${i})">Lunasi</button>` :
+            `✔️`
+            }
+        </td>
+    </tr>`;
+});
+
+document.getElementById("omzet").innerText =
+    "Rp " + total.toLocaleString();
+
+// ===== UPDATE STATUS =====
+function setLunas(i){
+    rekap[i].status="Lunas";
+    localStorage.setItem("rekapServis",JSON.stringify(rekap));
+    location.reload();
+}
+
+// ===== LOGOUT =====
+function logout(){
+    localStorage.removeItem("adminLogin");
+    location.href="admin.html";
+}
+</script>
+
+</body>
+</html>

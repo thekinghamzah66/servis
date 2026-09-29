@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Servis</title>
+
+<style>
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f4f4f4;
+}
+.container{
+    max-width:600px;
+    margin:3rem auto;
+    background:#fff;
+    padding:2rem;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+h2{
+    text-align:center;
+    margin-bottom:1.5rem;
+}
+label{
+    font-weight:600;
+}
+input,select{
+    width:100%;
+    padding:10px;
+    margin:8px 0 15px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+button{
+    width:100%;
+    padding:12px;
+    background:#ff9800;
+    border:none;
+    font-weight:bold;
+    border-radius:10px;
+    cursor:pointer;
+}
+button:hover{
+    background:#e68900;
+}
+.note{
+    font-size:.8rem;
+    color:#666;
+    margin-top:-10px;
+    margin-bottom:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>📋 Booking Servis</h2>
+
+    <form onsubmit="buatInvoice(event)">
+        <label>Nama Pelanggan</label>
+        <input type="text" id="nama" required>
+
+        <label>No WhatsApp</label>
+        <input type="text" id="wa" required>
+
+        <label>Jenis Motor</label>
+        <input type="text" id="motor" required>
+
+        <label>Pilih Servis</label>
+        <select id="servis">
+            <option value="65000">Paket Hemat - Rp 65.000</option>
+            <option value="55000">Servis Ringan - Rp 55.000</option>
+            <option value="250000">Servis Besar - Rp 250.000</option>
+        </select>
+
+        <!-- OPSI MEKANIK -->
+        <label>Pilih Mekanik</label>
+        <select id="mekanik" required>
+            <option value="">-- Pilih Mekanik --</option>
+            <option value="Andi Pratama">Andi Pratama (Spesialis Matic)</option>
+            <option value="Budi Santoso">Budi Santoso (Servis Besar)</option>
+            <option value="Rizky Maulana">Rizky Maulana (Motor Sport)</option>
+        </select>
+        <div class="note">💡 Bisa pilih sesuai keahlian mekanik</div>
+
+        <label>Tanggal Booking</label>
+        <input type="date" id="tanggal" required>
+
+        <button type="submit">Lanjut ke Invoice</button>
+    </form>
+</div>
+
+<script>
+/* AUTO PILIH MEKANIK DARI URL */
+const params = new URLSearchParams(window.location.search);
+const mekanikParam = params.get("mekanik");
+
+if(mekanikParam){
+    const mekanikSelect = document.getElementById("mekanik");
+    if(mekanikParam === "andi") mekanikSelect.value = "Andi Pratama";
+    if(mekanikParam === "budi") mekanikSelect.value = "Budi Santoso";
+    if(mekanikParam === "rizky") mekanikSelect.value = "Rizky Maulana";
+}
+
+/* SIMPAN DATA */
+function buatInvoice(e){
+    e.preventDefault();
+
+    localStorage.setItem("nama", nama.value);
+    localStorage.setItem("wa", wa.value);
+    localStorage.setItem("motor", motor.value);
+    localStorage.setItem("servis", servis.options[servis.selectedIndex].text);
+    localStorage.setItem("harga", servis.value);
+    localStorage.setItem("mekanik", mekanik.value);
+    localStorage.setItem("tanggal", tanggal.value);
+
+    window.location.href = "invoice.html";
+}
+</script>
+
+</body>
+</html>
